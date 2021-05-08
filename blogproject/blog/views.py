@@ -15,3 +15,7 @@ def index(request):
     blogs=Blog.objects.all().order_by('-pk') # 최신순으로 글 보여주기
     return render(request, 'blog/index.html', {'blogs': blogs})
 
+def single_post_page(request, pk):
+    blog=Blog.objects.get(pk=pk)
+    return render(request, 'blog/single_post_page.html', {'blog':blog})
+
