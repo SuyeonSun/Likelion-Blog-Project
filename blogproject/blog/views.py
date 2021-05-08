@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404 # import 해주기!
 from .models import Blog
 
 # Create your views here.
@@ -10,3 +10,8 @@ def home(request):
 def detail(request, blog_id):
     details=get_object_or_404(Blog, pk=blog_id)
     return render(request, 'detail.html', {'details':details})
+
+def index(request):
+    blogs=Blog.objects.all().order_by('-pk') # 최신순으로 글 보여주기
+    return render(request, 'blog/index.html', {'blogs': blogs})
+

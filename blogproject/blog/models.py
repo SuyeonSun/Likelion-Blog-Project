@@ -12,6 +12,3 @@ class Blog(models.Model):
 
     def summary(self): 
         return self.body[:100] # 100자 이하로 출력
-
-    
-
