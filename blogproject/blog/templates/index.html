@@ -11,11 +11,14 @@
 <hr>
 
 <h1>Blog</h1>
+<h2> 포스트 목록</h2>
 {% for blog in blogs %}
 <hr />
 <h3><a href="{% url 'detail' blog.id %}">{{blog.title}}</a></h3>
 <h4>{{blog.writer}}</h4>
 <h5>{{blog.pub_date}}</h5>
+<p>{{blog.summary}}</p>
+<a href="{% url 'detail' blog.id %}">...more</a>
 {%endfor%}
 </body>
 
