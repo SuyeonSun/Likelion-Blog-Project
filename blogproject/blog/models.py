@@ -9,10 +9,8 @@ class Blog(models.Model):
 
     def __str__(self): # 클래스 내에 정의
         # return self.title
-        return f'{self.title}'
+        return self.title
 
     def summary(self): 
         return self.body[:100] # 100자 이하로 출력
 
-    def get_absolute_url(self):
-        return f'/blog/{self.pk}'

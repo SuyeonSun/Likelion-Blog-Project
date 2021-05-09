@@ -12,10 +12,8 @@ def detail(request, blog_id):
     return render(request, 'detail.html', {'details':details})
 
 def index(request):
-    blogs=Blog.objects.all().order_by('-pk') # 최신순으로 글 보여주기
-    return render(request, 'blog/index.html', {'blogs': blogs})
+    blogs = Blog.objects.all()
+    return render(request, 'index.html', {'blogs': blogs}) # index.html 파일 찾아서 방문자에게 보내줌
 
-def single_post_page(request, pk):
-    blog=Blog.objects.get(pk=pk)
-    return render(request, 'blog/single_post_page.html', {'blog':blog})
-
+def about_me(request):
+    return render(request, 'about_me.html')

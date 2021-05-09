@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+
+<hr>
+
+<h1>Blog</h1>
+{% for blog in blogs %}
+<hr />
+<h3><a href="{% url 'detail' blog.id %}">{{blog.title}}</a></h3>
+<h4>{{blog.writer}}</h4>
+<h5>{{blog.pub_date}}</h5>
+{%endfor%}
+</body>
+
+</html>
