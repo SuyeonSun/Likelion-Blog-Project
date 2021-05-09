@@ -14,3 +14,8 @@ class Blog(models.Model):
     def summary(self): 
         return self.body[:100] # 100자 이하로 출력
 
+
+class People(models.Model):
+    name=models.CharField(max_length=20)
+    content=models.TextField()
+
