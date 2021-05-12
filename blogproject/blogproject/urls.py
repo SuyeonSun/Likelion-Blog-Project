@@ -18,10 +18,10 @@ from django.urls import path
 import blog.views
 from django.urls import include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog.views.home, name="home"),
-    path('home/', blog.views.home, name="home"),
     path('blog/', blog.views.index, name="index"),
     path('blog/<int:blog_id>/', blog.views.detail, name="detail"),
     path('about_me/', blog.views.about_me, name="about_me"),

@@ -2,14 +2,63 @@
 <html lang='en'>
 
 <head>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <style>
+        .navbar {
+            padding-left: 300px;
+        }
+    </style>
 </head>
 
 <body>
-    <a href="about_me">about_me</a>
-    <a href="blog">blog</a>
-    <a href="new">write blog</a>
-    <h1>대문 페이지</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> BABTA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about_me">ABOUT_ME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            BLOG
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="blog">BLOG LIST</a></li>
+                            <li><a class="dropdown-item" href="new">WRITE BLOG</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row my-3">
+            <h1>대문 페이지</h1>
+            <h1>무엇을 담으면 좋을까요</h1>
+            <img src="./images/img1.PNG" class="img-fluid" alt="...">
+            <img src="..." class="rounded float-start" alt="...">
+            <img src="..." class="rounded float-end" alt="...">
+            <img src="..." class="rounded mx-auto d-block" alt="...">
+            <img src="..." class="rounded float-start" alt="...">
+            <img src="..." class="rounded float-end" alt="...">
+        </div>
+    </div>
+
     <!--
     {% for blog in blogs.all %}
     <h5>{{blog.title}}</h5>
@@ -18,7 +67,8 @@
     <a href="{% url 'detail' blog.id %}">...more</a>
     {%endfor%}
     -->
-    <br>
 </body>
+
+
 
 </html>
