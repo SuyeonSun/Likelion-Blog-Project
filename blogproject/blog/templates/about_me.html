@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,264 @@
     <style>
         .navbar {
             padding-left: 300px;
+            height: 80px;
+        }
+
+        body {
+            background: whitesmoke;
+        }
+
+        /*window1*/
+        #window1 {
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile_img {
+            max-width: 250px;
+            border-radius: 70%;
+
+        }
+
+        #intro h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-size: 55px;
+            text-align: center;
+        }
+
+        #intro h3 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-size: 25px;
+            color: #555555;
+            text-align: center;
+        }
+
+        /*window2*/
+        #window2 {
+            margin-top: 80px;
+            background: linear-gradient(palevioletred, 40%, pink);
+        }
+
+        #intro2 h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-size: 50px;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-weight: 600px;
+            font-size: 55px;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .star_img {
+            width: 100px;
+            height: 100px;
+            display: inline;
+        }
+
+        .myself {
+            display: -webkit-flex;
+            display: flex;
+            margin-top: 50px;
+        }
+
+        .challenge {
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .challenge_img {
+            width: 300px;
+            height: 280px;
+            display: inline;
+            border-radius: 70%;
+        }
+
+        .challenge_text {
+            margin-top: 30px;
+            font-family: "Apple SD Gothic Neo", sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /*window4*/
+        #window4 {
+            padding-top: 30px;
+            background: linear-gradient(pink, 40%, rgb(228, 191, 28));
+        }
+
+        #intro4 h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-weight: 600;
+            font-size: 55px;
+            text-align: center;
+        }
+
+        .heart_img {
+            width: 80px;
+            height: 80px;
+            display: inline;
+        }
+
+        .container2 {
+            display: -webkit-flex;
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .other {
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .other_img {
+            width: 500px;
+            height: 300px;
+            display: inline;
+            width: 300px;
+            height: 280px;
+            border-radius: 70%;
+        }
+
+        .other {
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .other p {
+            font-family: "Apple SD Gothic Neo", sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .other p:hover {
+            font-size: 0;
+        }
+
+        .tmilist p:hover::before {
+            font-size: 25px;
+            font-weight: bold;
+            color: orangered;
+        }
+
+        .other #tmi1:hover:before {
+            content: '한국 전통 악기';
+        }
+
+        .other #tmi2:hover:before {
+            content: 'The Weeknd';
+        }
+
+        .other #tmi3:hover:before {
+            content: '축구';
+        }
+
+        .other #tmi4:hover:before {
+            content: '러닝';
+        }
+
+        .other #tmi5:hover:before {
+            content: 'About time';
+        }
+
+        .other #tmi6:hover:before {
+            content: 'Midnight in paris';
+        }
+
+        /*window3*/
+        #window3 {
+            padding-top: 30px;
+            background: linear-gradient(rgb(228, 191, 28), 40%, skyblue);
+        }
+
+        #intro3 h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-weight: 600;
+            font-size: 55px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Palanquin Dark', sans-serif;
+            font-weight: 600;
+            font-size: 55px;
+            text-align: center;
+        }
+
+        .cloud_img {
+            width: 100px;
+            height: 80px;
+            display: inline;
+        }
+
+        .container {
+            display: -webkit-flex;
+            display: flex;
+            margin-top: 50px;
+        }
+
+        .hobby {
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .hobby_img {
+            /*width: 500px;
+    height: 300px;*/
+            width: 300px;
+            height: 280px;
+            display: inline;
+            border-radius: 70%;
+        }
+
+        .hobby_video {
+            width: 300px;
+            height: 280px;
+            display: inline;
+            border-radius: 70%;
+        }
+
+        .hobby_text {
+            margin-top: 30px;
+            font-family: "Apple SD Gothic Neo", sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
         }
     </style>
     <title>about_me</title>
@@ -48,13 +307,123 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row my-3">
-            <h1>about_me 페이지 </h1>
-            <h2> 선수연입니다.</h2>
-            <p>멋쟁이사자처럼 좋아요 :) </p>
-        </div>
-    </div>
+    <!DOCTYPE html>
+    <html lang="kor">
+
+    <!--    <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;600&family=Shrikhand&display=swap"
+        rel="stylesheet">
+    -->
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello :)</title>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+        <section>
+            <div id="window1">
+                <id id="intro">
+                    <h1>Hello :) This is me!</h1>
+                    <h3>안녕하세요! 반갑습니다. 선수연 입니다.</h3>
+                    <img class="profile_img" src="{%static 'images/profile3.jpg'%}">
+                    <h3>스크롤을 내려보세요!</h3>
+                </id>
+            </div>
+
+            <div id="window2">
+                <id id="intro2">
+                    <h1>NEW challenge! <img class="star_img" src="{%static 'images/star.png'%}"> </h1>
+
+                    <div class="myself">
+                        <div class="challenge">
+                            <h2>웹 개발</h2>
+                            <img class="challenge_img" src="{%static 'images/likelion.png'%}" alt="">
+                            <p class="challenge_text">
+                                아이디어를 실행시켜내는 코딩의 매력에 빠져, <br>
+                                웹 개발에 흥미를 가지게 되었습니다. <br>
+                                이제는 저도 직접 서비스를 만들어내고 싶다는 생각에 <br>
+                                멋쟁이 사자처럼에서 활동할 수 있어 영광입니다.</p>
+                        </div>
+
+                        <div class="challenge">
+                            <h2>요가</h2>
+                            <img class="challenge_img" src="{%static 'images/yoga.jpg'%}" alt="">
+                            <p class="challenge_text">
+                                뻣뻣한 몸을 유연하게 만들고자, <br>
+                                이제껏 미뤄두었던 운동을 <br>
+                                꾸준히 해보고자 합니다. </p>
+                        </div>
+                    </div>
+                </id>
+            </div>
+
+            <div id="window4">
+                <id id="intro4">
+                    <h1> <img class="heart_img" src="{%static 'images/heart.png'%}"> What I love</h1>
+                    <div class="container2">
+                        <div class="other">
+                            <h2>음악</h2>
+                            <img class="other_img" src="{%static 'images/02.gif'%}" alt="">
+                            <div class="tmilist">
+                                <p id="tmi1">연주하는 악기</p>
+                                <p id="tmi2">좋아하는 아티스트</p>
+                            </div>
+                        </div>
+
+                        <div class="other">
+                            <h2>스포츠</h2>
+                            <img class="other_img" src="{%static 'images/03.jpg'%}" alt="">
+                            <div class="tmilist">
+                                <p id="tmi3">즐겨보는 경기</p>
+                                <p id="tmi4">가끔하는 운동</p>
+                            </div>
+                        </div>
+
+                        <div class="other">
+                            <h2>영화</h2>
+                            <img class="other_img" src="{%static 'images/01.gif'%}" alt="">
+                            <div class="tmilist">
+                                <p id="tmi5">좋아하는 영화1</p>
+                                <p id="tmi6">좋아하는 영화2</p>
+                            </div>
+                        </div>
+                    </div>
+                </id>
+
+                <div id="window3">
+                    <id id="intro3">
+                        <h1> Love traveling <img class="cloud_img" src="{%static 'images/cloud.png'%}"></h1>
+                        <div class="container">
+                            <div class="hobby">
+                                <img class="hobby_img" src="{%static 'images/img1.jpg'%}" alt="">
+                                <p class="hobby_text">가장 좋아하는 장소인 공항</p>
+                            </div>
+
+                            <div class="hobby">
+                                <img class="hobby_img" src="{%static 'images/img2.jpg'%}" alt="">
+                                <p class="hobby_text">최애 여행지 태국</p>
+                            </div>
+
+                            <div class="hobby">
+                                <iframe class="hobby_video" width="560" height="315"
+                                    src="https://www.youtube.com/embed/vkhOnPaKZ8U" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                                <p class="hobby_text">여행 가고 싶을 때마다 보는 유튜브</p>
+                            </div>
+                        </div>
+                    </id>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </html>
 </body>
 
 </html>

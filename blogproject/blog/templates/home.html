@@ -1,3 +1,5 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -10,9 +12,16 @@
     <style>
         .navbar {
             padding-left: 300px;
+            height: 80px;
+        }
+
+        .blank {
+            height: 30px;
         }
     </style>
 </head>
+
+<!--nav bar-->
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,27 +55,33 @@
         </div>
     </nav>
 
+    <!--빈 공간-->
+    <div class="blank"></div>
+
+    <!--content-->
+
     <div class="container">
-        <div class="row my-3">
-            <h1>대문 페이지</h1>
-            <h1>무엇을 담으면 좋을까요</h1>
-            <img src="./images/img1.PNG" class="img-fluid" alt="...">
-            <img src="..." class="rounded float-start" alt="...">
-            <img src="..." class="rounded float-end" alt="...">
-            <img src="..." class="rounded mx-auto d-block" alt="...">
-            <img src="..." class="rounded float-start" alt="...">
-            <img src="..." class="rounded float-end" alt="...">
+        <div class="row">
+            <div class="col">
+                <img src="{%static 'images/food1.PNG'%}" style="width:400px; height:300px;">
+            </div>
+            <div class="col">
+                <img src="{%static 'images/food2.PNG'%}" style="width:400px; height:300px;">
+            </div>
+            <div class="col">
+                <img src="{%static 'images/food3.PNG'%}" style="width:400px; height:300px;">
+            </div>
         </div>
     </div>
 
     <!--
     {% for blog in blogs.all %}
-    <h5>{{blog.title}}</h5>
-    <h6>{{blog.pub_date}}</h6>
-    <p>{{blog.summary}}</p>
-    <a href="{% url 'detail' blog.id %}">...more</a>
-    {%endfor%}
-    -->
+<h5>{{blog.title}}</h5>
+<h6>{{blog.pub_date}}</h6>
+<p>{{blog.summary}}</p>
+<a href="{% url 'detail' blog.id %}">...more</a>
+{%endfor%}
+-->
 </body>
 
 
