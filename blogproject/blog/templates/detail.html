@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about_me">ABOUT_ME</a>
@@ -43,8 +43,8 @@
                             BLOG
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="blog">blog list</a></li>
-                            <li><a class="dropdown-item" href="new">write blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'index' %}">blog list</a></li>
+                            <li><a class="dropdown-item" href="{% url 'new' %}">write blog</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -69,7 +69,7 @@
                     <p>{{details.pub_date}}</p>
                     <hr />
                     <!-- Preview image-->
-                    <img class="img-fluid rounded" src="https://via.placeholder.com/900x300" alt="..." />
+                    <img class="img-fluid rounded" src="{{details.image.url}}" alt="..." />
                     <hr />
                     <!-- Post content-->
                     <p>{{details.body}}</p>

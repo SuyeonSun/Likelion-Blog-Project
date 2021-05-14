@@ -121,9 +121,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS= [
     os.path.join(BASE_DIR, 'blog', 'static'),
-]
+] # 현재 static 파일이 어디에 있는지
 
-STATIC_ROOT=os.path.join(BASE_DIR, 'static')
+STATIC_ROOT=os.path.join(BASE_DIR, 'static') # static 파일을 어디에 모을건지
+
+MEDIA_URL = '/media/' # 이용자에게 사진을 보여줄 때 url에 보이는 구성요소
+
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media') # 이용자가 업로드한 파일을 모으는 곳
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

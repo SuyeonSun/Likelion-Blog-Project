@@ -6,6 +6,7 @@ class Blog(models.Model):
     writer=models.CharField(max_length=100)
     pub_date=models.DateTimeField()
     body=models.TextField()
+    image=models.ImageField(upload_to="blog/", blank=True, null = True)
 
     def __str__(self): # 클래스 내에 정의
         # return self.title
@@ -13,9 +14,3 @@ class Blog(models.Model):
 
     def summary(self): 
         return self.body[:100] # 100자 이하로 출력
-
-
-class People(models.Model):
-    name=models.CharField(max_length=20)
-    content=models.TextField()
-
