@@ -19,7 +19,7 @@
     <!-- nav-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">BABTA</a>
+            <a class="navbar-brand" href="#">Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -52,12 +52,13 @@
         <div class="row my-3">
             <h1>write your Blog</h1>
 
-            <form action="{%url 'create'%}" method="post">
+            <form action="{%url 'create'%}" method="POST">
                 {%csrf_token%}
                 <p>제목:<input type="text" name="title"></p>
                 <p>작성자:<input type="text" name="writer"></p>
-                본문:<textarea name="body" id="" cols="30" rows="10"></textarea>
-                <button type="submit">submit</button>
+                본문:<textarea name="body" id="" cols="40" rows="10"></textarea>
+                <br><br>
+                <button class="btn btn-dark" type="submit">submit</button>
             </form>
         </div>
     </div>
