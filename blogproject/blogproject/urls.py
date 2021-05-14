@@ -28,4 +28,7 @@ urlpatterns = [
     path('about_me/', blog.views.about_me, name="about_me"),
     path('new/', blog.views.new, name="new"), 
     path('create/', blog.views.create, name = "create"),
+    path('edit/<str:id>', blog.views.edit, name="edit"),
+    path('update/<str:id>', blog.views.update, name="update"),
+    path('delete/<str:id>', blog.views.delete, name="delete"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
