@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404 # import 해주기!
 from django.utils import timezone
 from .models import Blog
+from .forms import BlogForm
 # Create your views here.
 
 def home(request):
@@ -19,18 +20,17 @@ def about_me(request):
     return render(request, 'about_me.html')
 
 def new(request): # new.html 보여줌
-    return render(request, 'new.html')
+    form=BlogForm()
+    return render(request, 'new.html', {'form':form})
 
 def create(request):
-    new_blog=Blog()
-    new_blog.title = request.POST.get('title', False)
-    new_blog.writer = request.POST.get('writer', False)
-    new_blog.body = request.POST.get('body', False)
-    new_blog.pub_date=timezone.now()
-    # new_blog.image=request.FILES['image']
-    new_blog.image=request.POST.get('image', '')
-    new_blog.save()
-    return redirect('/blog/' + str(new_blog.id))
+    form = BlogForm(request.POST, request.FILES)
+    if form.is_valid():
+        new_blog = form.save(commit=False)
+        new_blog.pub_date = timezone.now()
+        new_blog.save()
+        return redirect('/blog/blog/' + str(new_blog.id))
+    return redirect('home')
 
 def edit(request, id): # 글 수정
     edit_blog=Blog.objects.get(id=id)
@@ -38,11 +38,11 @@ def edit(request, id): # 글 수정
 
 def update(request, id): # 수정내역 데이터베이스에 적용
     update_blog = Blog.objects.get(id = id)
-    new_blog.title = request.POST.get('title', False)
-    new_blog.writer = request.POST.get('writer', False)
-    new_blog.body = request.POST.get('body', False)
+    update_blog.title = request.POST.get('title', False)
+    update_blog.writer = request.POST.get('writer', False)
+    update_blog.body = request.POST.get('body', False)
     update_blog.pub_date=timezone.now()
-    new_blog.image=request.POST.get('image', '')
+    update_blog.image=request.POST.get('image', '')
     update_blog.save() # 꼭 save!
     return redirect('detail', update_blog.id)
 

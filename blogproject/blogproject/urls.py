@@ -15,20 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import blog.views
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.views import home
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', blog.views.home, name="home"),
-    path('blog/', blog.views.index, name="index"),
-    path('blog/<int:blog_id>/', blog.views.detail, name="detail"),
-    path('about_me/', blog.views.about_me, name="about_me"),
-    path('new/', blog.views.new, name="new"), 
-    path('create/', blog.views.create, name = "create"),
-    path('edit/<str:id>', blog.views.edit, name="edit"),
-    path('update/<str:id>', blog.views.update, name="update"),
-    path('delete/<str:id>', blog.views.delete, name="delete"),
+    path('', home, name="home"),
+    path('blog/', include('blog.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
