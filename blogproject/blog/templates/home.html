@@ -2,16 +2,20 @@
 <html lang='en'>
 
 <html>
+<title>
+    Welcome to the Blog
+</title>
 
 <head>
     <style>
+        /*button css*/
         * {
             box-sizing: inherit;
             transition: all 0.6* ease;
         }
 
         html,
-        body {
+        .buttons {
             min-height: 100%;
             width: 100%;
             font-family: Poppins;
@@ -39,36 +43,173 @@
             box-shadow: 0 0 50px #0ff, 0 0 21px #0ff;
         }
 
-        .text {
+        .button1 {
             color: white;
+            font-size: 21px;
+            border: 3px solid white;
+            border-radius: 100px;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button1:hover {
+            background: white;
+            color: #000;
+            box-shadow: 0 0 50px white, 0 0 21px white;
+        }
+
+        .login_hello {
+            color: white;
+        }
+
+        .hello_text1 {
+            color: white;
+            font-family: Poppins;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .hello_text2 {
+            color: white;
+            font-family: Poppins;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /*text css*/
+        .main {
+            width: 50vw;
+            height: auto;
+            font-family: "neontubes";
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .main span {
+            -webkit-transform: translateZ(0) translate3D(0, 0, 0);
+            transform: translateZ(0) translate3D(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: opacity;
+        }
+
+        .main .webdev {
+            color: #FFFF00;
+            text-shadow: 0 0 0 transparent, 0 0 10px #FFD700, 0 0 20px rgba(255, 0, 60, 0.5), 0 0 40px #FFD700, 0 0 100px #FFD700, 0 0 200px #FFD700, 0 0 300px #FFD700, 0 0 500px #FFD700, 0 0 1000px #FFD700;
+            -webkit-animation: blink 4s infinite alternate;
+            animation: blink 4s infinite alternate;
+        }
+
+        .main .socod {
+            color: #FF1493;
+            text-shadow: 0 0 0 transparent, 0 0 10px #FF1493, 0 0 20px rgba(38, 149, 255, 0.5), 0 0 40px #FF1493, 0 0 1#FF1493, 0 0 200px #FF1493, 0 0 300px #FF1493, 0 0 500px #FF1493;
+            -webkit-animation: buzz 0.01s infinite alternate;
+            animation: buzz 0.01s infinite alternate;
+        }
+
+        @-webkit-keyframes buzz {
+            70% {
+                opacity: 0.80;
+            }
+        }
+
+        @keyframes buzz {
+            70% {
+                opacity: 0.80;
+            }
+        }
+
+        @-webkit-keyframes blink {
+            40% {
+                opacity: 1;
+            }
+
+            42% {
+                opacity: 0.8;
+            }
+
+            43% {
+                opacity: 1;
+            }
+
+            45% {
+                opacity: 0.2;
+            }
+
+            46% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+            40% {
+                opacity: 1;
+            }
+
+            42% {
+                opacity: 0.8;
+            }
+
+            43% {
+                opacity: 1;
+            }
+
+            45% {
+                opacity: 0.2;
+            }
+
+            46% {
+                opacity: 1;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            .main {
+                width: 400px;
+            }
+
+            .main .socod {
+                font-size: 20px;
+                margin-bottom: 40px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="text">
-        {% if user.is_authenticated %}
-        {{user.location}} 위치의 {{user.university}} 학생 {{user.nickname}}님, 안녕하세요 :)
-        {% endif %}
+    <!--로그인 전 홈 화면-->
+    {% if not user.is_authenticated %}
+    <div class="main">
+        <div>
+            <h1 class="webdev">Welcome to the blog</h1>
+            <h4 class="socod"> To see more content, please login! </h4>
+        </div>
+        <div class="buttons">
+            <a class="button1" href="{% url 'login' %}">LOGIN</a>
+            &nbsp; &nbsp; &nbsp;
+            <a class="button" href="{% url 'signup' %}">SIGNUP</a>
+        </div>
     </div>
-
-    {% if user.is_authenticated %}
-    <a class="button" href="{% url 'about_me' %}">ABOUT ME</a>
-    &nbsp; &nbsp; &nbsp;
-    <a class="button" href="{% url 'index' %}">BLOG LIST</a>
-    &nbsp; &nbsp; &nbsp;
-    <a class="button" href="{% url 'new' %}">WRITE BLOG</a>
-    &nbsp; &nbsp; &nbsp;
-    <a class="button" href="{% url 'logout' %}">LOGOUT</a>
     {% endif %}
 
-    {% if not user.is_authenticated %}
-    <a class="button" href="{% url 'about_me' %}">ABOUT ME</a>
-    &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp;
-    <a class="button" href="{% url 'login' %}">LOGIN</a>
-    &nbsp; &nbsp; &nbsp;
-    <a class="button" href="{% url 'signup' %}">SIGNUP</a>
+    <!--로그인 후 홈 화면-->
+    {% if user.is_authenticated %}
+    <div class="login_hello">
+        <h2 class="hello_text1">{{user.nickname}}님, 안녕하세요!</h2>
+        <h4 class="hello_text2">({{user.location}} {{user.university}})</h4>
+    </div>
+
+    <div class="buttons">
+        <a class="button" href="{% url 'about_me' %}">ABOUT ME</a>
+        &nbsp; &nbsp; &nbsp;
+        <a class="button" href="{% url 'new' %}">WRITE BLOG</a>
+        &nbsp; &nbsp; &nbsp;
+        <a class="button" href="{% url 'index' %}">BLOG LIST</a>
+        &nbsp; &nbsp; &nbsp;
+        <a class="button" href="{% url 'logout' %}">LOGOUT</a>
+    </div>
     {% endif %}
 
 </body>
