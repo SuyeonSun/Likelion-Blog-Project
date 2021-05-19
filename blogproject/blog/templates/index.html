@@ -1,38 +1,105 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
 
-{% block content %}
-<!--index-->
-<div class="container">
-    <div class="row my-3">
-        <table class="table">
-            <tr>
-                <th scope="col">제목</th>
-                <th scope="col">아이디</th>
-                <th scope="col">작성일</th>
-                <th scope="col">글</th>
-            </tr>
+<head>
+    <style>
+        body {
+            background-color: #000;
+        }
 
-            <div class="outer">
-                {% for blog in blogs %}
-                <tr>
-                    <td>
-                        <h6><a href="{% url 'detail' blog.id %}">{{blog.title}}</a></h6>
-                    </td>
-                    <td>
-                        <h6>{{blog.writer}} </h6>
-                    </td>
-                    <td>
-                        <h6>{{blog.pub_date}}</h6>
-                    </td>
-                    <td>
-                        <h6>{{blog.summary}}</h6>
+        .container {
+            max-width: 948px;
+            margin: 4em auto;
+            padding: 4em;
+            background-color: rgb(53, 49, 49);
+            border-radius: 1em;
+        }
+
+        section.cards {
+            margin: 0 auto;
+            display: grid;
+            grid-auto-flow: row dense;
+            grid-template-columns: repeat(3, 270px);
+            grid-template-rows: repeat(12, 207px);
+            grid-gap: 16px;
+        }
+
+        .card {
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: whitesmoke;
+            transition: 0.5s all ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px #0ff, 0 0 21px #0ff;
+        }
+
+        .vertical {
+            flex-direction: column;
+            grid-row: span 2;
+            grid-column: span 1;
+        }
+
+
+        .horizontal {
+            flex-direction: row;
+            grid-row: span 1;
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section class="cards">
+
+            {% for blog in blogs %}
+            <article class="horizontal card">
+                <div class="card_content">
+                    <div class="card_title">
+                        <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
+                        <!--title-->
+                    </div>
+                    <div class="card_writer">
+                        {{blog.writer}}
+                        <!--writer-->
+                    </div>
+                    <div class="card_date">
+                        {{blog.pub_date}}
+                        <!--date-->
+                    </div>
+                    <div class="card_summary">
+                        {{blog.summary}}
+                        <!--summary-->
                         <a href="{% url 'detail' blog.id %}">더보기</a>
-                    </td>
-                </tr>
-                {%endfor%}
-            </div>
-        </table>
-    </div>
-</div>
+                    </div>
+                </div>
+            </article>
 
-{% endblock %}
+            <article class="vertical card">
+                <div class="card_content">
+                    <div class="card_title">
+                        <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
+                        <!--title-->
+                    </div>
+                    <div class="card_writer">
+                        {{blog.writer}}
+                        <!--writer-->
+                    </div>
+                    <div class="card_date">
+                        {{blog.pub_date}}
+                        <!--date-->
+                    </div>
+                    <div class="card_summary">
+                        {{blog.summary}}
+                        <!--summary-->
+                        <a href="{% url 'detail' blog.id %}">더보기</a>
+                    </div>
+                </div>
+            </article>
+            {%endfor%}
+        </section>
+    </div>
