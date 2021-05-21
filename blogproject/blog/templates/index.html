@@ -1,209 +1,61 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <style>
-        body {
-            background-color: #000;
-        }
+{% block content %}
+<section class="cards">
+    {% for blog in blogs %}
+    <article class="vertical card">
+        <div class="card_content">
+            <div class="card_title">
+                <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
+                <!--title-->
+            </div>
+            <div class="card_writer">
+                {{blog.writer}}
+                <!--writer-->
+                &nbsp;
+                {{blog.pub_date}}
+                <!--date-->
+            </div>
+            <div class="card_summary">
+                {{blog.summary}}
+                <!--summary-->
+                <a href="{% url 'detail' blog.id %}">더보기</a>
+            </div>
+            <div>
+                <!-- image-->
+                {% if blog.image %}
+                <img class="img-fluid rounded" src="{{blog.image.url}}" />
+                {% endif %}
+            </div>
+        </div>
+    </article>
 
-        .container {
-            max-width: 948px;
-            margin: 4em auto;
-            padding: 4em;
-            background-color: rgb(53, 49, 49);
-            border-radius: 1em;
-            display: flex;
-            justify-content: center;
-        }
-
-        section.cards {
-            margin: 0 auto;
-            display: grid;
-            grid-auto-flow: row dense;
-            grid-template-columns: repeat(3, 270px);
-            grid-template-rows: repeat(12, 207px);
-            grid-gap: 16px;
-        }
-
-        .card {
-            display: flex;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            background-color: whitesmoke;
-            transition: 0.5s all ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px #0ff, 0 0 21px #0ff;
-        }
-
-        .vertical {
-            flex-direction: column;
-            grid-row: span 2;
-            grid-column: span 1;
-            text-align: center;
-        }
-
-
-        .horizontal {
-            flex-direction: row;
-            grid-row: span 1;
-            grid-column: span 2;
-            text-align: center;
-        }
-
-        .nav {
-            color: white;
-            display: flex;
-            justify-content: center;
-        }
-
-        /*nav css*/
-        a {
-            color: #fff;
-            text-align: center;
-            width: 120px;
-            padding: 1em 0;
-            display: inline-block;
-            font-weight: 400;
-            transition: all .4s ease-in-out;
-            text-decoration: none;
-            font-family: Poppins;
-        }
-
-        .line {
-            width: 120px;
-            height: 3px;
-            background-color: #FFF;
-            transition: all .4s ease-in-out;
-        }
-
-        a:nth-child(2):hover~.line {
-            transform: translate(125px);
-            transition: all .4s ease-in-out;
-            background-color: tomato;
-        }
-
-        a:nth-child(2):hover {
-            color: tomato;
-        }
-
-        a:nth-child(3):hover~.line {
-            transform: translate(250px);
-            transition: all .4s ease-in-out;
-            background-color: aqua;
-        }
-
-        a:nth-child(3):hover {
-            color: aqua;
-        }
-
-        a:nth-child(4):hover~.line {
-            transform: translate(375px);
-            transition: all .4s ease-in-out;
-            background-color: yellow;
-        }
-
-        a:nth-child(4):hover {
-            color: yellow;
-        }
-
-        a:nth-child(5):hover~.line {
-            transform: translate(500px);
-            transition: all .4s ease-in-out;
-            background-color: rgb(202, 47, 99);
-        }
-
-        a:nth-child(5):hover {
-            color: rgb(202, 47, 99);
-        }
-    </style>
-</head>
-
-<body>
-    <!--nav-->
-    <div class="nav">
-        <nav>
-
-            {% if user.is_authenticated %}
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
-            <a class="nav-link" href="{% url 'about_me' %}">ABOUT ME</a>
-            <a class="dropdown-item" href="{% url 'new' %}">WRTIE BLOG</a>
-            <a class="nav-link" href="{% url 'index' %}">BLOG LIST</a>
-            <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
-            <div class="line"></div>
-            {% endif %}
-
-            {% if not user.is_authenticated %}
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
-            <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-            <a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
-            <div class="line"></div>
-            {% endif %}
-
-        </nav>
-    </div>
-
-    <!---->
-    <div class="container">
-        <section class="cards">
-            {% for blog in blogs %}
-            <article class="vertical card">
-                <div class="card_content">
-                    <div class="card_title">
-                        <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
-                        <!--title-->
-                    </div>
-                    <div class="card_writer">
-                        {{blog.writer}}
-                        <!--writer-->
-                        &nbsp;
-                        {{blog.pub_date}}
-                        <!--date-->
-                    </div>
-                    <div class="card_summary">
-                        {{blog.summary}}
-                        <!--summary-->
-                        <a href="{% url 'detail' blog.id %}">더보기</a>
-                    </div>
-                    <div>
-                        <!-- image-->
-                        {% if blog.image %}
-                        <img class="img-fluid rounded" src="{{blog.image.url}}" />
-                        {% endif %}
-                    </div>
-                </div>
-            </article>
-
-            <article class="horizontal card">
-                <div class="card_content">
-                    <div class="card_title">
-                        <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
-                        <!--title-->
-                    </div>
-                    <div class="card_writer">
-                        {{blog.writer}}
-                        <!--writer-->
-                        &nbsp;
-                        {{blog.pub_date}}
-                        <!--date-->
-                    </div>
-                    <div class="card_summary">
-                        {{blog.summary}}
-                        <!--summary-->
-                        <a href="{% url 'detail' blog.id %}">더보기</a>
-                    </div>
-                    <div>
-                        <!-- image-->
-                        {% if blog.image %}
-                        <img class="img-fluid rounded" src="{{blog.image.url}}" />
-                        {% endif %}
-                    </div>
-                </div>
-            </article>
-            {% endfor %}
-
-        </section>
-    </div>
+    <article class="horizontal card">
+        <div class="card_content">
+            <div class="card_title">
+                <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
+                <!--title-->
+            </div>
+            <div class="card_writer">
+                {{blog.writer}}
+                <!--writer-->
+                &nbsp;
+                {{blog.pub_date}}
+                <!--date-->
+            </div>
+            <div class="card_summary">
+                {{blog.summary}}
+                <!--summary-->
+                <a href="{% url 'detail' blog.id %}">더보기</a>
+            </div>
+            <div>
+                <!-- image-->
+                {% if blog.image %}
+                <img class="img-fluid rounded" src="{{blog.image.url}}" />
+                {% endif %}
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

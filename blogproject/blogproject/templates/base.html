@@ -2,74 +2,155 @@
 <html lang="en">
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-    </script>
-
-    <title>Blog</title>
-
     <style>
-        .navbar {
-            padding-left: 300px;
-            height: 80px;
+        body {
+            background-color: #000;
         }
 
-        body {
+        .container {
+            max-width: 948px;
+            margin: 2em auto;
+            /*padding: 4em;*/
+            /*background-color: rgb(53, 49, 49);*/
+            background-color: #000;
+            border-radius: 1em;
+            display: flex;
+            justify-content: center;
+        }
+
+        section.cards {
+            /*margin: 0 auto;*/
+            display: grid;
+            grid-auto-flow: row dense;
+            grid-template-columns: repeat(3, 270px);
+            grid-template-rows: repeat(12, 207px);
+            grid-gap: 16px;
+        }
+
+        .card {
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: whitesmoke;
+            transition: 0.5s all ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            /*box-shadow: 0 0 50px #0ff, 0 0 21px #0ff;*/
+        }
+
+        .vertical {
+            flex-direction: column;
+            grid-row: span 2;
+            grid-column: span 1;
             text-align: center;
+        }
+
+        .horizontal {
+            flex-direction: row;
+            grid-row: span 1;
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        .nav {
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding-top: 40px;
+        }
+
+        /*nav css*/
+        a {
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            padding: 1em 0;
+            display: inline-block;
+            font-weight: 400;
+            transition: all .4s ease-in-out;
+            text-decoration: none;
+            font-family: Poppins;
+        }
+
+        .line {
+            width: 120px;
+            height: 3px;
+            background-color: #FFF;
+            transition: all .4s ease-in-out;
+        }
+
+        a:nth-child(2):hover~.line {
+            transform: translate(125px);
+            transition: all .4s ease-in-out;
+            background-color: tomato;
+        }
+
+        a:nth-child(2):hover {
+            color: tomato;
+        }
+
+        a:nth-child(3):hover~.line {
+            transform: translate(250px);
+            transition: all .4s ease-in-out;
+            background-color: aqua;
+        }
+
+        a:nth-child(3):hover {
+            color: aqua;
+        }
+
+        a:nth-child(4):hover~.line {
+            transform: translate(375px);
+            transition: all .4s ease-in-out;
+            background-color: yellow;
+        }
+
+        a:nth-child(4):hover {
+            color: yellow;
+        }
+
+        a:nth-child(5):hover~.line {
+            transform: translate(500px);
+            transition: all .4s ease-in-out;
+            background-color: rgb(202, 47, 99);
+        }
+
+        a:nth-child(5):hover {
+            color: rgb(202, 47, 99);
+        }
+
+        /*new.html form p태그 css*/
+        p {
+            color: white;
         }
     </style>
 </head>
 
 <body>
     <!-- nav-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Blog
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about_me' %}">ABOUT_ME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">blog list</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="dropdown-item" href="{% url 'new' %}">write blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
-                    </li>
-                    {% endif %}
+    <div class="nav">
+        <nav>
 
-                    {% if not user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
-                    </li>
+            {% if user.is_authenticated %}
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
+            <a class="nav-link" href="{% url 'about_me' %}">ABOUT ME</a>
+            <a class="dropdown-item" href="{% url 'new' %}">WRTIE BLOG</a>
+            <a class="nav-link" href="{% url 'index' %}">BLOG LIST</a>
+            <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+            <div class="line"></div>
+            {% endif %}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
-                    </li>
-                    {% endif %}
+            {% if not user.is_authenticated %}
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
+            <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+            <a class="nav-link" href="{% url 'signup' %}">SIGNUP</a>
+            <div class="line"></div>
+            {% endif %}
 
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="container">
         {% block content %}
