@@ -5,8 +5,8 @@ from .views import *
 
 
 urlpatterns = [
-    path('', index, name="index"),
-    path('blog/<int:blog_id>/', detail, name="detail"),
+    #path('', index, name="index"),
+    path('home/<int:blog_id>/', detail, name="detail"),
     path('about_me/', about_me, name="about_me"),
     path('new/', new, name="new"), 
     path('create/', create, name = "create"),

@@ -1,15 +1,177 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container">
-    <div id="row my-3">
-        <h1>write your Blog</h1>
+<!DOCTYPE html>
+<html lang='en'>
 
-        <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
+<title>
+    Welcome to the Blog
+</title>
 
-            {{form.as_p}}
+<head>
+    <style>
+        * {
+            box-sizing: inherit;
+            transition: all 0.6* ease;
+        }
 
-            <button class="btn btn-dark" type="submit">submit</button>
-        </form>
+        .container {
+            max-width: 948px;
+            margin: 2em auto;
+            /*padding: 4em;*/
+            /*background-color: rgb(53, 49, 49);*/
+            background-color: salmon;
+            border-radius: 1em;
+            display: flex;
+            justify-content: center;
+        }
+
+        html {
+            min-height: 100%;
+            width: 100%;
+            font-family: Poppins;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            background: #111;
+        }
+
+        /*nav css*/
+        .nav {
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .atag {
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            padding: 1em 0;
+            display: inline-block;
+            font-weight: 400;
+            transition: all .4s ease-in-out;
+            text-decoration: none;
+            font-family: Poppins;
+        }
+
+        .line {
+            width: 120px;
+            height: 3px;
+            background-color: #FFF;
+            transition: all .4s ease-in-out;
+        }
+
+        a:nth-child(2):hover~.line {
+            transform: translate(125px);
+            transition: all .4s ease-in-out;
+            background-color: tomato;
+        }
+
+        a:nth-child(2):hover {
+            color: tomato;
+        }
+
+        a:nth-child(3):hover~.line {
+            transform: translate(250px);
+            transition: all .4s ease-in-out;
+            background-color: aqua;
+        }
+
+        a:nth-child(3):hover {
+            color: aqua;
+        }
+
+        a:nth-child(4):hover~.line {
+            transform: translate(375px);
+            transition: all .4s ease-in-out;
+            background-color: yellow;
+        }
+
+        a:nth-child(4):hover {
+            color: yellow;
+        }
+
+        a:nth-child(5):hover~.line {
+            transform: translate(500px);
+            transition: all .4s ease-in-out;
+            background-color: rgb(202, 47, 99);
+        }
+
+        a:nth-child(5):hover {
+            color: rgb(202, 47, 99);
+        }
+
+        /*content css*/
+        p {
+            font-family: Poppins;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+
+        }
+
+        /*login 버튼 css*/
+        .button1 {
+            color: rgb(228, 143, 15);
+            background: #111;
+            font-size: 25px;
+            border: 3px solid rgb(228, 143, 15);
+            cursor: pointer;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .button1:hover {
+            background: rgb(228, 143, 15);
+            color: black;
+            box-shadow: 0 0 50px rgb(228, 143, 15), 0 0 21px rgb(228, 143, 15);
+        }
+
+        .row {
+            display: flex;
+            justify-content: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+    <!--로그인 후 홈 화면-->
+    {% if user.is_authenticated %}
+    <div class="nav">
+        <div>
+            <nav>
+                {% if user.is_authenticated %}
+                <a class="atag" href="{% url 'home' %}">HOME</a>
+                <a class="atag" href="{% url 'about_me' %}">ABOUT ME</a>
+                <a class="atag" href="{% url 'new' %}">WRTIE BLOG</a>
+                <a class="atag" href="{% url 'logout' %}">LOGOUT</a>
+                <div class="line"></div>
+                {% endif %}
+            </nav>
+        </div>
+        <div class="login_hello">
+            <p class="hello_text1" style="font-family: Poppins;">{{user.nickname}}님, 안녕하세요!
+                ({{user.location}} {{user.university}})</p>
+        </div>
     </div>
-</div>
-{% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
+                <div>
+                    <p class="title_ptag" style="font-size: large;">Wrtie Blog</p>
+                </div>
+                {% csrf_token %}
+                {{form.as_p}}
+                <!--{{form.as_p}}-->
+
+
+                <button class="button1" type="submit">submit</button>
+            </form>
+        </div>
+    </div>
+
+    {% endif %}
+</body>
+
+</html>

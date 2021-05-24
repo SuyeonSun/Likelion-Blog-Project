@@ -22,7 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             background: #111;
         }
 
@@ -56,10 +56,6 @@
             background: white;
             color: #000;
             box-shadow: 0 0 50px white, 0 0 21px white;
-        }
-
-        .login_hello {
-            color: white;
         }
 
         .hello_text1 {
@@ -174,6 +170,150 @@
                 margin-bottom: 40px;
             }
         }
+
+        /*로그인 후 화면 css*/
+        .login_hello {
+            color: white;
+        }
+
+        .container {
+            /*max-width: 948px;*/
+            margin: 2em auto;
+            /*padding: 4em;*/
+            /*background-color: rgb(53, 49, 49);*/
+            background-color: #000;
+            border-radius: 1em;
+            display: flex;
+            justify-content: center;
+        }
+
+        section.cards {
+            /*margin: 0 auto;*/
+            display: grid;
+            grid-auto-flow: row dense;
+            grid-template-columns: repeat(3, 270px);
+            grid-template-rows: repeat(4, 207px);
+            grid-gap: 16px;
+        }
+
+        .card {
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-color: whitesmoke;
+            transition: 0.5s all ease;
+            padding: 20px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            /*box-shadow: 0 0 50px #0ff, 0 0 21px #0ff;*/
+        }
+
+        .vertical {
+            flex-direction: column;
+            grid-row: span 2;
+            grid-column: span 1;
+            text-align: center;
+        }
+
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content_atag {
+            text-decoration: none;
+            color: black;
+        }
+
+        /*.horizontal {
+            flex-direction: row;
+            grid-row: span 1;
+            grid-column: span 2;
+            text-align: center;
+        }*/
+
+        .nav {
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        /*nav css*/
+        .atag {
+            color: #fff;
+            text-align: center;
+            width: 120px;
+            padding: 1em 0;
+            display: inline-block;
+            font-weight: 400;
+            transition: all .4s ease-in-out;
+            text-decoration: none;
+            font-family: Poppins;
+        }
+
+        .line {
+            width: 120px;
+            height: 3px;
+            background-color: #FFF;
+            transition: all .4s ease-in-out;
+        }
+
+        a:nth-child(2):hover~.line {
+            transform: translate(125px);
+            transition: all .4s ease-in-out;
+            background-color: tomato;
+        }
+
+        a:nth-child(2):hover {
+            color: tomato;
+        }
+
+        a:nth-child(3):hover~.line {
+            transform: translate(250px);
+            transition: all .4s ease-in-out;
+            background-color: aqua;
+        }
+
+        a:nth-child(3):hover {
+            color: aqua;
+        }
+
+        a:nth-child(4):hover~.line {
+            transform: translate(375px);
+            transition: all .4s ease-in-out;
+            background-color: yellow;
+        }
+
+        a:nth-child(4):hover {
+            color: yellow;
+        }
+
+        a:nth-child(5):hover~.line {
+            transform: translate(500px);
+            transition: all .4s ease-in-out;
+            background-color: rgb(202, 47, 99);
+        }
+
+        a:nth-child(5):hover {
+            color: rgb(202, 47, 99);
+        }
+
+        /*new.html form p태그 css*/
+        p {
+            font-family: Poppins;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            margin: 15px;
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -195,22 +335,67 @@
 
     <!--로그인 후 홈 화면-->
     {% if user.is_authenticated %}
-    <div class="login_hello">
-        <h2 class="hello_text1">{{user.nickname}}님, 안녕하세요!</h2>
-        <h4 class="hello_text2">({{user.location}} {{user.university}})</h4>
+    <div class="nav">
+        <nav>
+            {% if user.is_authenticated %}
+            <a class="atag" aria-current="page" href="{% url 'home' %}">HOME</a>
+            <a class="atag" href="{% url 'about_me' %}">ABOUT ME</a>
+            <a class="atag" href="{% url 'new' %}">WRTIE BLOG</a>
+            <a class="atag" href="{% url 'logout' %}">LOGOUT</a>
+            <div class="line"></div>
+            {% endif %}
+
+            <!--{% if not user.is_authenticated %}
+            <a class="atag" aria-current="page" href="{% url 'home' %}">HOME</a>
+            <a class="atag" href="{% url 'login' %}">LOGIN</a>
+            <a class="atag" href="{% url 'signup' %}">SIGNUP</a>
+            <div class="line"></div>
+            {% endif %}-->
+        </nav>
+        <div class="login_hello">
+            <p class="hello_text1" style="font-family: Poppins;">{{user.nickname}}님, 안녕하세요! ({{user.location}}
+                {{user.university}})</p>
+        </div>
     </div>
 
-    <div class="buttons">
-        <a class="button" href="{% url 'about_me' %}">ABOUT ME</a>
-        &nbsp; &nbsp; &nbsp;
-        <a class="button" href="{% url 'new' %}">WRITE BLOG</a>
-        &nbsp; &nbsp; &nbsp;
-        <a class="button" href="{% url 'index' %}">BLOG LIST</a>
-        &nbsp; &nbsp; &nbsp;
-        <a class="button" href="{% url 'logout' %}">LOGOUT</a>
+    <div class="container">
+        <section class="cards">
+            {% for blog in blogs %}
+            <article class="vertical card">
+
+                <div class="card_title">
+                    <a class="content_atag" href="{% url 'detail' blog.id %}"
+                        style="font-size: 23px;"><strong>{{blog.title}}</strong></a>
+                    <!--title-->
+                </div>
+                <div class="card_writer">
+                    by {{blog.writer}}
+                    <!--writer-->
+                </div>
+                <div>
+                    {{blog.pub_date}}
+                    <!--date-->
+                </div>
+                <div class="card_summary">
+                    {{blog.summary}}
+                    <!--summary-->
+                    <a href="{% url 'detail' blog.id %}">더보기</a>
+                </div>
+                <div class="image">
+                    <div>
+                        <!-- image-->
+                        {% if blog.image %}
+                        <img class="img-fluid rounded" src="{{blog.image.url}}" style="width: 240px; height: 240px;" />
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
     </div>
+
     {% endif %}
-
 </body>
+
 
 </html>
