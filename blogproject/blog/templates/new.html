@@ -17,7 +17,7 @@
             margin: 2em auto;
             /*padding: 4em;*/
             /*background-color: rgb(53, 49, 49);*/
-            background-color: salmon;
+            background-color: white;
             border-radius: 1em;
             display: flex;
             justify-content: center;
@@ -103,22 +103,28 @@
         /*content css*/
         p {
             font-family: Poppins;
-            color: white;
+
             display: flex;
             justify-content: space-between;
             text-align: center;
 
         }
 
+        .title_ptag {
+            color: black;
+        }
+
         /*login 버튼 css*/
         .button1 {
             color: rgb(228, 143, 15);
-            background: #111;
+            background: rgb(228, 143, 15);
+            color: black;
             font-size: 25px;
             border: 3px solid rgb(228, 143, 15);
             cursor: pointer;
             text-decoration: none;
-            width: 100%;
+            width: 300px;
+            margin-bottom: 18px;
         }
 
         .button1:hover {
@@ -127,9 +133,24 @@
             box-shadow: 0 0 50px rgb(228, 143, 15), 0 0 21px rgb(228, 143, 15);
         }
 
-        .row {
+        .left {
             display: flex;
             justify-content: flex-start;
+        }
+
+        p {
+            font-size: large;
+            color: white;
+        }
+
+        .container_ptag {
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        textarea {
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
@@ -156,17 +177,41 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="left">
             <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
                 <div>
-                    <p class="title_ptag" style="font-size: large;">Wrtie Blog</p>
+                    <p class="title_ptag" style="font-size: large;"><strong>Write Blog</strong></p>
                 </div>
                 {% csrf_token %}
-                {{form.as_p}}
+                <div>
+                    <p class="container_ptag" style="font-size: large;">제목:</p>
+                </div>
+                <div>
+                    <input type="text" name="title" value="{{blog.title}}">
+                </div>
+                <div>
+                    <p class="container_ptag" style="font-size: large;"> 작성자:</p>
+                </div>
+                <div>
+                    <input type="text" name="writer" value="{{blog.writer}}">
+                </div>
+
+                <div>
+                    {% if blog.image %}
+                    <p class="container_ptag" style="font-size: large;">사진: <input type="file" name="image"
+                            value="{{blog.image}}"></p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <p class="container_ptag" style="font-size: large;">본문:</p>
+                </div>
+                <div>
+                    <textarea name="body" id="" cols="40" rows="10">{{blog.body}}</textarea>
+                </div>
+                <button class="button1" type="submit">submit</button>
                 <!--{{form.as_p}}-->
 
-
-                <button class="button1" type="submit">submit</button>
             </form>
         </div>
     </div>

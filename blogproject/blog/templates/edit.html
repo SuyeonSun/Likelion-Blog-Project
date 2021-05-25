@@ -12,7 +12,7 @@
             margin: 2em auto;
             /*padding: 4em;*/
             /*background-color: rgb(53, 49, 49);*/
-            background-color: salmon;
+            background-color: white;
             border-radius: 1em;
             display: flex;
             justify-content: center;
@@ -98,7 +98,6 @@
         /*content css*/
         p {
             font-family: Poppins;
-            color: white;
             display: flex;
             justify-content: space-between;
         }
@@ -106,12 +105,14 @@
         /*login 버튼 css*/
         .button1 {
             color: rgb(228, 143, 15);
-            background: #111;
+            background: rgb(228, 143, 15);
+            color: black;
             font-size: 25px;
             border: 3px solid rgb(228, 143, 15);
             cursor: pointer;
             text-decoration: none;
             width: 100%;
+            margin-bottom: 18px;
         }
 
         .button1:hover {
@@ -127,6 +128,11 @@
 
         .container_ptag {
             margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
@@ -161,7 +167,7 @@
         <div class="row">
             <form action=" {%url 'update' blog.id %}" method="POST" enctype="multipart/form-data">
                 <div>
-                    <p class="container_ptag" style="font-size: large;">Edit Blog</p>
+                    <p class="container_ptag" style="font-size: large;"><strong>Edit Blog</strong></p>
                 </div>
                 {%csrf_token%}
                 <div>
