@@ -12,6 +12,13 @@
             transition: all 0.6* ease;
         }
 
+        html {
+            background: linear-gradient(rgba(0.8, 0.5, 0, 0.7), rgba(0.8, 0, 0, 0.5)), url('/static/images/background.jpg') fixed;
+
+            /*fixed*/
+            background-size: cover;
+        }
+
         .container {
             max-width: 948px;
             margin: 2em auto;
@@ -21,6 +28,8 @@
             border-radius: 1em;
             display: flex;
             justify-content: center;
+            height: 700px;
+            padding: 15px;
         }
 
         html {
@@ -30,7 +39,6 @@
             font-weight: 400;
             display: flex;
             justify-content: center;
-            background: #111;
         }
 
         /*nav css*/
@@ -161,13 +169,11 @@
     <div class="nav">
         <div>
             <nav>
-                {% if user.is_authenticated %}
                 <a class="atag" href="{% url 'home' %}">HOME</a>
                 <a class="atag" href="{% url 'about_me' %}">ABOUT ME</a>
                 <a class="atag" href="{% url 'new' %}">WRTIE BLOG</a>
                 <a class="atag" href="{% url 'logout' %}">LOGOUT</a>
                 <div class="line"></div>
-                {% endif %}
             </nav>
         </div>
         <div class="login_hello">
@@ -197,17 +203,17 @@
                 </div>
 
                 <div>
-                    {% if blog.image %}
-                    <p class="container_ptag" style="font-size: large;">사진: <input type="file" name="image"
-                            value="{{blog.image}}"></p>
-                    {% endif %}
-                </div>
-
-                <div>
                     <p class="container_ptag" style="font-size: large;">본문:</p>
                 </div>
                 <div>
                     <textarea name="body" id="" cols="40" rows="10">{{blog.body}}</textarea>
+                </div>
+
+                <div>
+
+                    <p class="container_ptag" style="font-size: large;">사진: <input type="file" name="image"
+                            value="{{blog.image}}"></p>
+
                 </div>
                 <button class="button1" type="submit">submit</button>
                 <!--{{form.as_p}}-->

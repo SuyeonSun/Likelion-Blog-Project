@@ -23,7 +23,18 @@
             justify-content: center;
             align-items: center;
             /*text-transform: uppercase;*/
-            background: #111;
+            /*background: #111;*/
+        }
+
+        html {
+            background: linear-gradient(rgba(0.8, 0.5, 0, 0.7), rgba(0.8, 0, 0, 0.5)), url('/static/images/background.jpg') fixed;
+
+            /*fixed*/
+            background-size: cover;
+        }
+
+        body {
+            text-align: center;
         }
 
         .button {
@@ -95,13 +106,17 @@
             text-shadow: 0 0 0 transparent, 0 0 10px #FFD700, 0 0 20px rgba(255, 0, 60, 0.5), 0 0 40px #FFD700, 0 0 100px #FFD700, 0 0 200px #FFD700, 0 0 300px #FFD700, 0 0 500px #FFD700, 0 0 1000px #FFD700;
             -webkit-animation: blink 4s infinite alternate;
             animation: blink 4s infinite alternate;
+            font-size: 45px;
+            text-align: center;
         }
 
         .main .socod {
+            font-size: 35px;
             color: #FF1493;
             text-shadow: 0 0 0 transparent, 0 0 10px #FF1493, 0 0 20px rgba(38, 149, 255, 0.5), 0 0 40px #FF1493, 0 0 1#FF1493, 0 0 200px #FF1493, 0 0 300px #FF1493, 0 0 500px #FF1493;
             -webkit-animation: buzz 0.01s infinite alternate;
             animation: buzz 0.01s infinite alternate;
+            text-align: center;
         }
 
         @-webkit-keyframes buzz {
@@ -181,7 +196,6 @@
             margin: 2em auto;
             /*padding: 4em;*/
             /*background-color: rgb(53, 49, 49);*/
-            background-color: #000;
             border-radius: 1em;
             display: flex;
             justify-content: center;
@@ -192,7 +206,7 @@
             display: grid;
             grid-auto-flow: row dense;
             grid-template-columns: repeat(3, 270px);
-            grid-template-rows: repeat(4, 207px);
+            grid-template-rows: repeat(6, 150px);
             grid-gap: 16px;
         }
 
@@ -322,8 +336,8 @@
     {% if not user.is_authenticated %}
     <div class="main">
         <div>
-            <h1 class="webdev">Welcome to the blog</h1>
-            <h4 class="socod"> To see more content, please login! </h4>
+            <h1 class="webdev" style="font-size: 45px; text-align: center;">WELCOME to my blog</h1>
+            <h2 class=" socod" style="font-size: 30px; text-align: center;"> Please login for more! </h2>
         </div>
         <div class="buttons">
             <a class="button1" href="{% url 'login' %}">LOGIN</a>
@@ -337,20 +351,11 @@
     {% if user.is_authenticated %}
     <div class="nav">
         <nav>
-            {% if user.is_authenticated %}
             <a class="atag" aria-current="page" href="{% url 'home' %}">HOME</a>
             <a class="atag" href="{% url 'about_me' %}">ABOUT ME</a>
             <a class="atag" href="{% url 'new' %}">WRTIE BLOG</a>
             <a class="atag" href="{% url 'logout' %}">LOGOUT</a>
             <div class="line"></div>
-            {% endif %}
-
-            <!--{% if not user.is_authenticated %}
-            <a class="atag" aria-current="page" href="{% url 'home' %}">HOME</a>
-            <a class="atag" href="{% url 'login' %}">LOGIN</a>
-            <a class="atag" href="{% url 'signup' %}">SIGNUP</a>
-            <div class="line"></div>
-            {% endif %}-->
         </nav>
         <div class="login_hello">
             <p class="hello_text1" style="font-family: Poppins;">{{user.nickname}}님, 안녕하세요! ({{user.location}}
@@ -369,27 +374,21 @@
                         style="font-size: 23px;"><strong>{{blog.title}}</strong></a>
                     <!--title-->
                 </div>
-                <div class="card_writer">
+                <div class="card_writer" style="color: gray;">
                     by {{blog.writer}}
                     <!--writer-->
                 </div>
-                <div>
+                <div style="color: gray;">
                     {{blog.pub_date}}
                     <!--date-->
                 </div>
+                <br>
                 <div class="card_summary">
                     {{blog.summary}}
                     <!--summary-->
                     <a href="{% url 'detail' blog.id %}">더보기</a>
                 </div>
-                <div class="image">
-                    <div>
-                        <!-- image-->
-                        {% if blog.image %}
-                        <img class="img-fluid rounded" src="{{blog.image.url}}" style="width: 240px; height: 240px;" />
-                        {% endif %}
-                    </div>
-                </div>
+
             </article>
             {% endfor %}
         </section>

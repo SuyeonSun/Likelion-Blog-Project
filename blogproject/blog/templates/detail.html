@@ -12,6 +12,13 @@
             transition: all 0.6* ease;
         }
 
+        html {
+            background: linear-gradient(rgba(0.8, 0.5, 0, 0.7), rgba(0.8, 0, 0, 0.5)), url('/static/images/background.jpg') fixed;
+
+            /*fixed*/
+            background-size: cover;
+        }
+
         .container {
             max-width: 948px;
             margin: 2em auto;
@@ -20,10 +27,11 @@
             background-color: white;
             border-radius: 1em;
             display: flex;
-            justify-content: flex-start;
-            padding-left: 40px;
-            padding-top: 20px;
-            height: 595px;
+            justify-content: center;
+            width: 900px;
+            height: 700px;
+            padding: 15px;
+
         }
 
         html {
@@ -33,7 +41,6 @@
             font-weight: 400;
             display: flex;
             justify-content: center;
-            background: #111;
         }
 
         /*nav css*/
@@ -143,7 +150,7 @@
 
         p {
             font-size: large;
-            color: white;
+            color: black;
         }
 
         .container_ptag {
@@ -155,10 +162,6 @@
             width: 300px;
             height: 300px;
         }
-
-        .content_ptag {
-            color: black;
-        }
     </style>
 </head>
 
@@ -168,17 +171,15 @@
     <div class="nav">
         <div>
             <nav>
-                {% if user.is_authenticated %}
                 <a class="atag" href="{% url 'home' %}">HOME</a>
                 <a class="atag" href="{% url 'about_me' %}">ABOUT ME</a>
                 <a class="atag" href="{% url 'new' %}">WRTIE BLOG</a>
                 <a class="atag" href="{% url 'logout' %}">LOGOUT</a>
                 <div class="line"></div>
-                {% endif %}
             </nav>
         </div>
         <div class="login_hello">
-            <p class="hello_text1" style="font-family: Poppins;">{{user.nickname}}님, 안녕하세요!
+            <p class="hello_text1" style="font-family: Poppins; color: white;">{{user.nickname}}님, 안녕하세요!
                 ({{user.location}} {{user.university}})</p>
         </div>
     </div>
@@ -187,7 +188,7 @@
         <div class="left">
             <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
                 <div>
-                    <p class="content_ptag">{{details.title}} </p>
+                    <p class="content_ptag"><strong>{{details.title}}</strong> </p>
                 </div>
                 <div>
                     <p class="content_ptag">by {{details.writer}} &nbsp;{{details.pub_date}}</p><!-- Author-->
@@ -204,8 +205,8 @@
                     <p class="content_ptag">{{details.body}}</p>
                 </div>
                 <div>
-                    <a href="{% url 'edit' details.id %}">수정하기</a>
-                    <a href="{% url 'delete' details.id %}">삭제하기</a>
+                    <button><a href="{% url 'edit' details.id %}">수정하기</a></button>
+                    <button><a href="{% url 'delete' details.id %}">삭제하기</a></button>
                 </div>
             </form>
         </div>

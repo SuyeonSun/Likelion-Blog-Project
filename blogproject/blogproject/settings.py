@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-ft^fbc@l1a1xcow#8$649f0e4feo-&!1#01_2rtk$z826#03j6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
@@ -127,9 +127,10 @@ STATICFILES_DIRS= [
 
 STATIC_ROOT=os.path.join(BASE_DIR, 'static') # static 파일을 어디에 모을건지
 
+# 미디어
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media') # 이용자가 업로드한 파일을 모으는 곳
 MEDIA_URL = '/media/' # 이용자에게 사진을 보여줄 때 url에 보이는 구성요소
 
-MEDIA_ROOT=os.path.join(BASE_DIR, 'media') # 이용자가 업로드한 파일을 모으는 곳
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
