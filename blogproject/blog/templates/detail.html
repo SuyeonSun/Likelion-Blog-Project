@@ -6,6 +6,9 @@
 </title>
 
 <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+
     <style>
         * {
             box-sizing: inherit;
@@ -27,10 +30,10 @@
             background-color: white;
             border-radius: 1em;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             width: 900px;
             height: 700px;
-            padding: 15px;
+            padding: 30px;
 
         }
 
@@ -113,35 +116,16 @@
         /*content css*/
         p {
             font-family: Poppins;
-
             display: flex;
             justify-content: space-between;
             text-align: center;
-
         }
 
         .title_ptag {
             color: black;
         }
 
-        /*login 버튼 css*/
-        .button1 {
-            color: rgb(228, 143, 15);
-            background: rgb(228, 143, 15);
-            color: black;
-            font-size: 25px;
-            border: 3px solid rgb(228, 143, 15);
-            cursor: pointer;
-            text-decoration: none;
-            width: 300px;
-            margin-bottom: 18px;
-        }
 
-        .button1:hover {
-            background: rgb(228, 143, 15);
-            color: black;
-            box-shadow: 0 0 50px rgb(228, 143, 15), 0 0 21px rgb(228, 143, 15);
-        }
 
         .left {
             display: flex;
@@ -149,7 +133,6 @@
         }
 
         p {
-            font-size: large;
             color: black;
         }
 
@@ -161,6 +144,44 @@
         textarea {
             width: 300px;
             height: 300px;
+        }
+
+        form {
+            padding: 7px;
+        }
+
+        .button1 {
+            color: rgb(228, 143, 15);
+            background: rgb(228, 143, 15);
+            color: black;
+            font-size: 25px;
+            border: 3px solid rgb(228, 143, 15);
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 15px;
+            padding: 5px;
+        }
+
+        .button1:hover {
+            background: rgb(228, 143, 15);
+            color: black;
+            box-shadow: 0 0 50px rgb(228, 143, 15), 0 0 21px rgb(228, 143, 15);
+        }
+
+
+        #detail_content1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .content_ptag {
+            margin: 0px;
+        }
+
+        #e_d_buttons {
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -187,26 +208,41 @@
     <div class="container">
         <div class="left">
             <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
-                <div>
-                    <p class="content_ptag"><strong>{{details.title}}</strong> </p>
+
+
+                <p class="content_ptag" style="font-size:25px; margin-bottom: 5px;">
+                    <strong>{{details.title}}</strong>
+                </p>
+
+                <div id="detail_content1">
+                    <div>
+                        <i class="fas fa-user-circle fa-2x" style="color:gray;"></i>
+                    </div>
+                    <div>
+                        <p class="content_ptag" style="font-size:18px; color: gray;">
+                            &nbsp;{{details.writer}}
+                            &nbsp;{{details.pub_date}}</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="content_ptag">by {{details.writer}} &nbsp;{{details.pub_date}}</p><!-- Author-->
-                    <!-- Date and time-->
+                <br>
+                <div id="details_body">
+                    <p class="content_ptag">{{details.body}}</p>
                 </div>
+                <br>
                 <div>
                     <!-- image-->
                     {% if details.image %}
-                    <img class="img-fluid rounded" src="{{details.image.url}}" />
-                    <hr />
+                    <img class="img-fluid rounded" src="{{details.image.url}}" style="width: 300px; height: 300px;" />
                     {% endif %}
                 </div>
-                <div>
-                    <p class="content_ptag">{{details.body}}</p>
-                </div>
-                <div>
-                    <button><a href="{% url 'edit' details.id %}">수정하기</a></button>
-                    <button><a href="{% url 'delete' details.id %}">삭제하기</a></button>
+                <br>
+                <div id="e_d_buttons">
+
+                    <div><a href="{% url 'edit' details.id %}" class="button1" style="margin-right: 3px;
+                        margin-left: 3px;">수정하기</a></div>
+                    <div><a href="{% url 'delete' details.id %}" class="button1" style="color: black; margin-right: 3px;
+                        margin-left: 3px;">삭제하기</a></div>
+
                 </div>
             </form>
         </div>

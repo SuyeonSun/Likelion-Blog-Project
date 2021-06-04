@@ -1,15 +1,153 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang='en'>
 
-{% block content %}
-<div class="container">
-    <div class="row my-3">
-        <h1>Sign up</h1>
+<head>
+    <title>
+        Welcome to the Blog
+    </title>
 
-        <form action="{% url 'signup' %}" method="POST">
+    <style>
+        .socod {
+            font-size: 35px;
+            color: #FF1493;
+            text-shadow: 0 0 0 transparent, 0 0 10px #FF1493, 0 0 20px rgba(38, 149, 255, 0.5), 0 0 40px #FF1493, 0 0 1#FF1493, 0 0 200px #FF1493, 0 0 300px #FF1493, 0 0 500px #FF1493;
+            -webkit-animation: buzz 0.01s infinite alternate;
+            animation: buzz 0.01s infinite alternate;
+            text-align: center;
+        }
+
+        @-webkit-keyframes buzz {
+            70% {
+                opacity: 0.80;
+            }
+        }
+
+        @keyframes buzz {
+            70% {
+                opacity: 0.80;
+            }
+        }
+
+        @-webkit-keyframes blink {
+            40% {
+                opacity: 1;
+            }
+
+            42% {
+                opacity: 0.8;
+            }
+
+            43% {
+                opacity: 1;
+            }
+
+            45% {
+                opacity: 0.2;
+            }
+
+            46% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+            40% {
+                opacity: 1;
+            }
+
+            42% {
+                opacity: 0.8;
+            }
+
+            43% {
+                opacity: 1;
+            }
+
+            45% {
+                opacity: 0.2;
+            }
+
+            46% {
+                opacity: 1;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            .main {
+                width: 400px;
+            }
+
+            .main .socod {
+                font-size: 20px;
+                margin-bottom: 40px;
+            }
+        }
+
+        html {
+            font-family: Poppins;
+            font-weight: 400;
+            color: white;
+            background: linear-gradient(rgba(0.8, 0.5, 0, 0.7), rgba(0.8, 0, 0, 0.5)), url('/static/images/background.jpg') fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+
+        p {
+            color: whitesmoke;
+            font-family: Poppins;
+            padding: 3px;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        .button1 {
+            color: black;
+            background: rgb(228, 143, 15);
+            font-size: 25px;
+            border: 3px solid rgb(228, 143, 15);
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            width: 45%;
+        }
+
+        .button1:hover {
+            background: rgb(228, 143, 15);
+            color: black;
+            box-shadow: 0 0 50px rgb(228, 143, 15), 0 0 21px rgb(228, 143, 15);
+        }
+
+        .button2 {
+            margin-top: 10px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class=" socod" style="text-align:center;">FILL OUT THIS FORM :)</h1>
+
+    <div>
+        <form class="form-control" id="exampleFormControlInput1" action="{% url 'signup' %}" method="POST">
             {%csrf_token%}
             {{form.as_p}}
-            <button class="btn btn-dark" type="submit">signup</button>
         </form>
     </div>
-</div>
-{% endblock %}
+    <div class="buttons">
+        <div>
+            <button class="button1" type="submit">sign up</button>
+        </div>
+        <div>
+            <a class="button2" href="{% url 'home' %}" style="color: aquamarine;">go back! </a> </div>
+    </div>
+</body>
+
+</html>
