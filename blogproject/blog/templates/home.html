@@ -332,7 +332,7 @@
 </head>
 
 <body>
-    <!--로그인 전 홈 화면
+    <!--로그인 전 홈 화면-->
     {% if not user.is_authenticated %}
     <div class="main">
         <div>
@@ -346,10 +346,10 @@
             <a class="button" href="{% url 'signup' %}">SIGNUP</a>
         </div>
     </div>
-    {% endif %}-->
+    {% endif %}
 
     <!--로그인 후 홈 화면-->
-    <!--{% if user.is_authenticated %}-->
+    {% if user.is_authenticated %}
     <div class="nav">
         <nav>
             <a class="atag" aria-current="page" href="{% url 'home' %}">HOME</a>
@@ -397,7 +397,7 @@
 
     </div>
 
-    <!--{% endif %}-->
+    {% endif %}
 </body>
 
 
